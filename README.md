@@ -1,70 +1,253 @@
-# Getting Started with Create React App
+# Domain Knowledge Co-Pilot Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+Domain Knowledge Co-Pilot is a Retrieval-Augmented Generation (RAG) application that allows users to create domain-specific knowledge repositories from PDF documents and interact with them using natural language queries.
 
-In the project directory, you can run:
+The frontend provides an intuitive interface for:
 
-### `npm start`
+- User Authentication
+- Corpus Management
+- PDF Upload
+- Conversational Chat Interface
+- Citation Display
+- Knowledge Retrieval Visualization
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The application communicates with a FastAPI backend that performs document processing, vector search, BM25 retrieval, reranking, and answer generation.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+# Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Authentication
 
-### `npm run build`
+- User Registration
+- User Login
+- JWT Token Based Authentication
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Corpus Management
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Create New Corpus
+- View Existing Corpora
+- Delete Corpus
+- Load Corpus Details
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Document Management
 
-### `npm run eject`
+- Upload PDF Documents
+- View Uploaded Documents
+- Document Isolation Per Corpus
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Conversational RAG
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Ask Questions Against Uploaded Documents
+- Follow-up Questions
+- Session-based Chat History
+- Citation-based Responses
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Explainability
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Source Citations
+- Retrieved Chunk Preview
+- Page Number References
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Technology Stack
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Frontend
 
-### Code Splitting
+- React.js
+- JavaScript
+- Axios
+- CSS3
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Backend Integration
 
-### Analyzing the Bundle Size
+- FastAPI
+- JWT Authentication
+- REST APIs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+# Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```text
+src/
 
-### Advanced Configuration
+├── components/
+│   ├── Login.js
+│   ├── Login.css
+│   ├── Register.js
+│   ├── Register.css
+│   ├── ChatUI.js
+│   └── ChatUI.css
+│
+├── services/
+│   └── api.js
+│
+├── utils/
+│   └── logger.js
+│
+├── App.js
+├── App.css
+├── index.js
+└── index.css
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+# Application Flow
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## User Authentication
 
-### `npm run build` fails to minify
+1. Register account
+2. Login
+3. Receive JWT token
+4. Token stored in Local Storage
+5. Protected API access enabled
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Knowledge Base Creation
+
+1. Create Corpus
+2. Upload PDF Documents
+3. Backend performs:
+   - Text Extraction
+   - Semantic Chunking
+   - Embedding Generation
+   - Vector Storage
+
+## Question Answering
+
+1. User selects Corpus
+2. User enters question
+3. Backend executes RAG Pipeline
+4. Response returned with citations
+5. Chat history updated
+
+---
+
+# API Integration
+
+The frontend communicates with the backend using Axios.
+
+Base URL:
+
+```javascript
+http://localhost:8000
+```
+
+Authentication token is automatically attached using Axios Interceptors.
+
+---
+
+# Available Screens
+
+## Login Page
+
+- Username
+- Password
+- Login Button
+
+## Registration Page
+
+- Username
+- Password
+- Register Button
+
+## Chat Interface
+
+- Corpus Selection
+- PDF Upload
+- Chat Window
+- Message History
+- Citation Viewer
+
+---
+
+# Environment Setup
+
+## Prerequisites
+
+- Node.js 18+
+- npm
+
+---
+
+# Installation
+
+Clone Repository
+
+```bash
+git clone <repository-url>
+```
+
+Move to project directory
+
+```bash
+cd frontend
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+---
+
+# Running Locally
+
+Start development server
+
+```bash
+npm start
+```
+
+Application will run at:
+
+```text
+http://localhost:3000
+```
+
+Backend should be running at:
+
+```text
+http://localhost:8000
+```
+
+---
+
+# Build For Production
+
+```bash
+npm run build
+```
+
+Production build will be generated inside:
+
+```text
+build/
+```
+
+---
+
+# Future Enhancements
+
+- Dark Mode
+- Multi-File Upload
+- Streaming Responses
+- Voice Queries
+- Export Chat
+- Mobile Responsive Design
+- Role-Based Access Control
+
+---
+
+# Author
+
+Radhika Malani
+
+Software Engineer | Generative AI Developer
+
+Built as part of the Domain Knowledge Co-Pilot Capstone Project.
